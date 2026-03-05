@@ -1,4 +1,4 @@
-# 🛡️ Snort 3 IDS/IPS Lab — Installation, Configuration & Rule Testing
+<img width="711" height="760" alt="Finally Validate the configuration" src="https://github.com/user-attachments/assets/38c98cff-f53a-40c8-a642-6bcf731f4f18" /># 🛡️ Snort 3 IDS/IPS Lab — Installation, Configuration & Rule Testing
 
 This project demonstrates the **installation, configuration, and testing of Snort 3** as a Network Intrusion Detection System (IDS) on a Kali Linux virtual machine.
 
@@ -225,6 +225,7 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 ```
+Save & Exit
 
 ## Enable the NIC Service
 
@@ -259,6 +260,9 @@ Define network variables:
 HOME_NET = '<your-ip>/24'
 EXTERNAL_NET = '!' .. HOME_NET
 ```
+Save & Exit
+<img width="612" height="226" alt="Define HOME_NET (local network) and EXTERNAL_NET" src="https://github.com/user-attachments/assets/83d0c63c-b0e4-46ab-9cad-cca6c8b5d826" />
+
 
 These variables allow Snort to distinguish **trusted and untrusted traffic**.
 
@@ -286,6 +290,7 @@ sudo nano /usr/local/etc/rules/local.rules
 alert icmp any any -> $HOME_NET any \
 (msg:"External ICMP Ping Detected"; itype:8; sid:1000002; rev:1;)
 ```
+Save & Exit
 
 This rule alerts when an **external host sends a ping request** to the protected network.
 
@@ -316,12 +321,15 @@ ips =
     variables = default_variables
 }
 ```
+Then Exit
 
 Validate configuration:
 
 ```bash
 snort -c /usr/local/etc/snort/snort.lua
 ```
+<img width="711" height="760" alt="Finally Validate the configuration" src="https://github.com/user-attachments/assets/ebf5f0e5-e57a-46cf-9dd6-7f2723b1a1f5" />
+
 
 ---
 
@@ -330,6 +338,8 @@ snort -c /usr/local/etc/snort/snort.lua
 ```bash
 sudo snort -c /usr/local/etc/snort/snort.lua -i eth0 -A alert_fast
 ```
+<img width="408" height="103" alt="Run Snort" src="https://github.com/user-attachments/assets/13e4bcc6-e0ac-41d6-93da-c9c5f9538ecc" />
+
 
 Snort now begins **monitoring network traffic in IDS mode**.
 
@@ -342,12 +352,16 @@ From another virtual machine:
 ```bash
 ping <snort_vm_ip>
 ```
+<img width="530" height="201" alt="Ping your machine " src="https://github.com/user-attachments/assets/7698b974-b7a9-4ad8-a2de-591b7dd483ce" />
+
 
 Expected alert:
 
 ```
 External ICMP Ping Detected
 ```
+<img width="1219" height="492" alt="What to observe" src="https://github.com/user-attachments/assets/8d68a917-128b-426d-8057-2b7ae847ff07" />
+
 
 This confirms that the **custom detection rule is working**.
 
