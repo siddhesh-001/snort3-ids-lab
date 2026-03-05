@@ -1,3 +1,10 @@
+---
+
+Disclaimer
+
+This repository is for educational and cybersecurity research purposes only. All testing and analysis should be performed in authorized environments.
+
+
 # 🛡️ Snort 3 IDS/IPS Lab — Installation, Configuration & Rule Testing
 
 This project demonstrates the **installation, configuration, and testing of Snort 3** as a Network Intrusion Detection System (IDS) on a Kali Linux virtual machine.
