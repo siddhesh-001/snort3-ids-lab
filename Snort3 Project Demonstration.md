@@ -290,6 +290,8 @@ sudo nano /usr/local/etc/rules/local.rules
 alert icmp any any -> $HOME_NET any \
 (msg:"External ICMP Ping Detected"; itype:8; sid:1000002; rev:1;)
 ```
+<img width="897" height="178" alt="Write the first rule " src="https://github.com/user-attachments/assets/28953a6e-f178-4e88-86e5-cf0c0882a6c4" />
+
 Save & Exit
 
 This rule alerts when an **external host sends a ping request** to the protected network.
