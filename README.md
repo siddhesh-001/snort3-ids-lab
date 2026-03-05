@@ -4,6 +4,7 @@ Disclaimer
 
 This repository is for educational and cybersecurity research purposes only. All testing and analysis should be performed in authorized environments.
 
+---
 
 # 🛡️ Snort 3 IDS/IPS Lab — Installation, Configuration & Rule Testing
 
