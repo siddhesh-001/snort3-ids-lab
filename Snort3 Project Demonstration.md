@@ -242,6 +242,7 @@ systemctl status snort-nic.service
 ```
 
 This ensures the NIC configuration is **automatically applied when the system boots**.
+
 ---
 
 # 🔧 Step 6 — Configure Snort
