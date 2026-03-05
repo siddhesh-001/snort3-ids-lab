@@ -1,4 +1,10 @@
+---
 Snort  Alert  Tests Results
+
+To validate the custom Snort rules, multiple attack scenarios were simulated from a **separate virtual machine** targeting the Snort monitoring system.
+The following tests confirm that Snort successfully detects suspicious activity using the configured rules.
+
+---
 1.	Alert for ICMP echo repeated requests
 Rule used:
 alert icmp any any -> $HOME_NET any (msg:"Possible ICMP echo flood requests detected"; itype:8; detection_filter:track by_src, count 10, seconds 5; sid:10000001; rev:1;)
@@ -15,6 +21,7 @@ alert icmp any any -> $HOME_NET any (msg:"Possible ICMP echo flood requests dete
 
   <img width="1038" height="318" alt="image" src="https://github.com/user-attachments/assets/9aaebfda-b864-47e3-9da8-784669e42be9" />
 
+---
 
 2.	Alert for Oversized ICMP Echo Request flood
 Rule used:
@@ -30,6 +37,7 @@ alert icmp any any -> $HOME_NET any (msg:"Possible oversized ICMP Echo Request f
  
 <img width="1006" height="211" alt="image" src="https://github.com/user-attachments/assets/2d0d11ac-c44d-4cb3-8631-8ad5f88e478a" />
 
+---
 
 3.	Possible TCP SYN port scan detection
 Rule used:
@@ -43,6 +51,8 @@ alert tcp any any -> $HOME_NET any (msg:"Possible TCP SYN port scan detected"; f
 -	Snort Alert test result
 
 <img width="1038" height="234" alt="image" src="https://github.com/user-attachments/assets/7dabeb22-89d5-4dde-a0cc-3b20b2221383" />
+
+---
 
 4.	Any outbound and inbound malicious ip communication
 Rule used:
@@ -62,6 +72,8 @@ alert ip 192.168.217.129 any -> $HOME_NET any (msg:"Inbound connection from know
 -	Snort Alert test result
  
 <img width="1041" height="168" alt="image" src="https://github.com/user-attachments/assets/8d66648c-e10c-4235-9d3e-241ca798af1a" />
+
+---
 
 5.	Any outbound and inbound malicious domain communication
 Rule used:
