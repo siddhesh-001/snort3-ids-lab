@@ -188,7 +188,7 @@ ip link
 Enable promiscuous mode:
 
 ```bash
-sudo ip link set dev eth0 promisc on
+sudo ip link set dev <Your Network Interface>  promisc on
 ```
 
 Disable packet offloading:
