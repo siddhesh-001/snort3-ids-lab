@@ -1,4 +1,4 @@
-<img width="711" height="760" alt="Finally Validate the configuration" src="https://github.com/user-attachments/assets/38c98cff-f53a-40c8-a642-6bcf731f4f18" /># 🛡️ Snort 3 IDS/IPS Lab — Installation, Configuration & Rule Testing
+# 🛡️ Snort 3 IDS/IPS Lab — Installation, Configuration & Rule Testing
 
 This project demonstrates the **installation, configuration, and testing of Snort 3** as a Network Intrusion Detection System (IDS) on a Kali Linux virtual machine.
 
