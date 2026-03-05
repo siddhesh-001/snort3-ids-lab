@@ -67,6 +67,7 @@ Update system packages.
 sudo apt-get update
 sudo apt-get upgrade
 ```
+
 <img width="669" height="171" alt="01_Update_pakage_list" src="https://github.com/user-attachments/assets/e57e7313-8957-40e2-91d0-5b05213030fe" />
 
 
@@ -79,6 +80,7 @@ liblzma-dev openssl libssl-dev pkg-config cmake cpputest libsqlite3-dev \
 uuid-dev libcmocka-dev libnetfilter-queue-dev libmnl-dev autotools-dev \
 libunwind-dev git
 ```
+
 <img width="633" height="549" alt="02_installing dependencies" src="https://github.com/user-attachments/assets/617596de-de0d-4c81-87d7-71530f498e43" />
 
 
@@ -109,6 +111,9 @@ Verify installation:
 ```bash
 ldconfig -p | grep daq
 ```
+
+<img width="651" height="96" alt="Screenshot 2026-01-15 224758" src="https://github.com/user-attachments/assets/baae6ebb-6ac8-4263-a4f7-ecdf344039d0" />
+
 
 ---
 
@@ -155,6 +160,7 @@ Configure the build:
 ```bash
 ./configure_cmake.sh --prefix=/usr/local --enable-tcmalloc
 ```
+
 <img width="1350" height="612" alt="Run the CMake configuration script(detects libdaq and tcmalloc)_4" src="https://github.com/user-attachments/assets/5869dbec-f559-42f4-8ef0-567a9ee1b286" />
 
 
@@ -177,6 +183,7 @@ Verify installation:
 ```bash
 snort -V
 ```
+
 <img width="537" height="284" alt="image" src="https://github.com/user-attachments/assets/ef5e50eb-f53b-45d3-bf6e-c079c3038891" />
 
 
@@ -204,6 +211,9 @@ Disable packet offloading:
 sudo ethtool -K eth0 gro off lro off
 ```
 
+<img width="513" height="117" alt="Disable GRO   LRO" src="https://github.com/user-attachments/assets/82ddc285-b630-4f63-9dc2-713d06e251ed" />
+
+
 This ensures Snort can inspect **raw network packets accurately**.
 
 ## Create systemd Service for NIC Configuration
@@ -215,6 +225,8 @@ Create the service file:
 ```bash
 sudo nano /etc/systemd/system/snort-nic.service
 ```
+
+
 
 Add the following configuration:
 
@@ -232,7 +244,10 @@ RemainAfterExit=yes
 [Install]
 WantedBy=multi-user.target
 ```
+
 Save & Exit
+<img width="1020" height="463" alt="Create systemd Service" src="https://github.com/user-attachments/assets/48a714a1-ded0-4628-98ae-54ce97f3d382" />
+
 
 ## Enable the NIC Service
 
@@ -248,6 +263,9 @@ Verify the service:
 ```bash
 systemctl status snort-nic.service
 ```
+
+<img width="1006" height="100" alt="Enable the NIC service" src="https://github.com/user-attachments/assets/ada37827-7cef-4e2c-896b-0cc00fcd65f2" />
+
 
 This ensures the NIC configuration is **automatically applied when the system boots**.
 
@@ -267,7 +285,9 @@ Define network variables:
 HOME_NET = '<your-ip>/24'
 EXTERNAL_NET = '!' .. HOME_NET
 ```
+
 Save & Exit
+
 <img width="612" height="226" alt="Define HOME_NET (local network) and EXTERNAL_NET" src="https://github.com/user-attachments/assets/83d0c63c-b0e4-46ab-9cad-cca6c8b5d826" />
 
 
@@ -297,6 +317,7 @@ sudo nano /usr/local/etc/rules/local.rules
 alert icmp any any -> $HOME_NET any \
 (msg:"External ICMP Ping Detected"; itype:8; sid:1000002; rev:1;)
 ```
+
 <img width="897" height="178" alt="Write the first rule " src="https://github.com/user-attachments/assets/28953a6e-f178-4e88-86e5-cf0c0882a6c4" />
 
 Save & Exit
@@ -337,6 +358,7 @@ Validate configuration:
 ```bash
 snort -c /usr/local/etc/snort/snort.lua
 ```
+
 <img width="711" height="760" alt="Finally Validate the configuration" src="https://github.com/user-attachments/assets/ebf5f0e5-e57a-46cf-9dd6-7f2723b1a1f5" />
 
 
@@ -347,6 +369,7 @@ snort -c /usr/local/etc/snort/snort.lua
 ```bash
 sudo snort -c /usr/local/etc/snort/snort.lua -i eth0 -A alert_fast
 ```
+
 <img width="408" height="103" alt="Run Snort" src="https://github.com/user-attachments/assets/13e4bcc6-e0ac-41d6-93da-c9c5f9538ecc" />
 
 
@@ -361,6 +384,7 @@ From another virtual machine:
 ```bash
 ping <snort_vm_ip>
 ```
+
 <img width="530" height="201" alt="Ping your machine " src="https://github.com/user-attachments/assets/7698b974-b7a9-4ad8-a2de-591b7dd483ce" />
 
 
@@ -369,6 +393,7 @@ Expected alert:
 ```
 External ICMP Ping Detected
 ```
+
 <img width="1219" height="492" alt="What to observe" src="https://github.com/user-attachments/assets/8d68a917-128b-426d-8057-2b7ae847ff07" />
 
 
