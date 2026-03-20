@@ -28,6 +28,7 @@ alert icmp any any -> $HOME_NET any (msg:"Possible ICMP echo flood requests dete
 Rule used:
 
 alert icmp any any -> $HOME_NET any (msg:"Possible oversized ICMP Echo Request flood"; itype:8; dsize:>1000; detection_filter:track by_src, count 10, seconds 5; sid:10000002; rev:2;)
+
 -Alert for ICMP packet size more than 1000 bytes (dsize:>1000) with repeated echo requests
 
 -	Attacking from different VM
