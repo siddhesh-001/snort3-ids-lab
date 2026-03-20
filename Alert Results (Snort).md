@@ -8,7 +8,8 @@ The following tests confirm that Snort successfully detects suspicious activity 
 # 1.	**Alert for ICMP echo repeated requests**
 Rule used:
 
-alert icmp any any -> $HOME_NET any (msg:"Possible ICMP echo flood requests detected"; itype:8; detection_filter:track by_src, count 10, seconds 5; sid:10000001; rev:1;)
+**alert icmp any any -> $HOME_NET any (msg:"Possible ICMP echo flood requests detected"; itype:8; detection_filter:track by_src, count 10, seconds 5; sid:10000001; rev:1;)**
+
 -	Alert for only icmp echo requests receiving from any network to home network having more than 10 packets in 5 seconds by a source
 
 -	Attacking from different VM
@@ -27,7 +28,7 @@ alert icmp any any -> $HOME_NET any (msg:"Possible ICMP echo flood requests dete
 # 2.	**Alert for Oversized ICMP Echo Request flood**
 Rule used:
 
-alert icmp any any -> $HOME_NET any (msg:"Possible oversized ICMP Echo Request flood"; itype:8; dsize:>1000; detection_filter:track by_src, count 10, seconds 5; sid:10000002; rev:2;)
+**alert icmp any any -> $HOME_NET any (msg:"Possible oversized ICMP Echo Request flood"; itype:8; dsize:>1000; detection_filter:track by_src, count 10, seconds 5; sid:10000002; rev:2;)**
 
 -Alert for ICMP packet size more than 1000 bytes (dsize:>1000) with repeated echo requests
 
@@ -45,7 +46,7 @@ alert icmp any any -> $HOME_NET any (msg:"Possible oversized ICMP Echo Request f
 # 3.	**Possible TCP SYN port scan detection**
 Rule used:
 
-alert tcp any any -> $HOME_NET any (msg:"Possible TCP SYN port scan detected"; flags:S; flow:to_server; detection_filter:track by_src, count 20, seconds 3; sid:10000003; rev:1;)
+**alert tcp any any -> $HOME_NET any (msg:"Possible TCP SYN port scan detected"; flags:S; flow:to_server; detection_filter:track by_src, count 20, seconds 3; sid:10000003; rev:1;)**
 
 -Detecting TCP port scans (flags:S), whch scans the ports on server (flow:to_server)
 
@@ -64,11 +65,11 @@ alert tcp any any -> $HOME_NET any (msg:"Possible TCP SYN port scan detected"; f
 Rule used:
 **For Outbound ip Communication**
 
-alert ip $HOME_NET any -> 192.168.217.129 any (msg:"Outbound connection to known malicious IP"; sid:10000050; rev:1
+**alert ip $HOME_NET any -> 192.168.217.129 any (msg:"Outbound connection to known malicious IP"; sid:10000050; rev:1**
 
 **For Inbound ip Communication**
 
-alert ip 192.168.217.129 any -> $HOME_NET any (msg:"Inbound connection from known malicious IP"; sid:10000051; rev:1;)
+**alert ip 192.168.217.129 any -> $HOME_NET any (msg:"Inbound connection from known malicious IP"; sid:10000051; rev:1;)**
 
 -Separately made rules for outbound and inbound ip communication
 
@@ -87,11 +88,11 @@ alert ip 192.168.217.129 any -> $HOME_NET any (msg:"Inbound connection from know
 Rule used:
 **For Outbound DNS query**
 
-alert udp $HOME_NET any -> any 53 (msg:"Outbound DNS query to known malicious domain"; content:"badexample.com"; sid:10000006; rev:1
+**alert udp $HOME_NET any -> any 53 (msg:"Outbound DNS query to known malicious domain"; content:"badexample.com"; sid:10000006; rev:1)**
 
 **For Inbound DNS response**
 
-alert udp any 53 -> $HOME_NET any (msg:"Inbound DNS response for known malicious domain"; content:"badexample.com"; sid:10000007; rev:1;)
+**alert udp any 53 -> $HOME_NET any (msg:"Inbound DNS response for known malicious domain"; content:"badexample.com"; sid:10000007; rev:1;)**
 
 -	Usually, DNS carries udp protocol and DNS uses port 53
 
